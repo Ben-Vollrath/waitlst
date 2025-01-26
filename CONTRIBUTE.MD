@@ -85,8 +85,12 @@ Thank you for your interest in contributing to **Waitlst**! Follow the steps bel
 4. **Push Your Branch**:
    - Push your branch to your forked repository:
      ```bash
-     git push origin feature/your-feature-name
+     git push origin feat/your-feature-name
      ```
+     or
+     ```bash
+     git push origin fix/your-fix-name
+     ``` 
 
 5. **Open a Pull Request**:
    - Go to the original repository and open a pull request from your branch.
