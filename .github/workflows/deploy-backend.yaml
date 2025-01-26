@@ -1,12 +1,15 @@
 name: Deploy Function & Migration
 
 on:
-  push:
-    branches:
-      - create-initial-structure
+  workflow_run:
+    workflows:
+      - test-backend
+    types:
+      - completed
 
 jobs:
   deploy-function:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     env:
@@ -23,6 +26,7 @@ jobs:
       - run: supabase functions deploy test-workflow --project-ref $PROJECT_ID
         working-directory: ./backend/
   deploy-migration:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     env:
