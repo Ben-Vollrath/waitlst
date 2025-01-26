@@ -21,5 +21,5 @@ jobs:
         with:
           version: latest
 
-      - run: supabase functions deploy github-action-deploy --project-ref $PROJECT_ID
+      - run: supabase functions deploy test-workflow --project-ref $PROJECT_ID
         working-directory: ./backend/
