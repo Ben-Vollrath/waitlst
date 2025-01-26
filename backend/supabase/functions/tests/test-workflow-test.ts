@@ -3,11 +3,12 @@ import { assert, assertEquals } from 'https://deno.land/std@0.192.0/testing/asse
 import { createClient, SupabaseClient } from 'jsr:@supabase/supabase-js@2'
 
 // Will load the .env file to Deno.env
-import 'https://deno.land/x/dotenv@v3.2.2/load.ts'
+import { config } from 'https://deno.land/x/dotenv@v3.2.2/mod.ts'
+const env = config({ path: '.env.local' })
 
 // Set up the configuration for the Supabase client
-const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? ''
-const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY') ?? ''
+const supabaseUrl = env.SUPABASE_URL ?? ''
+const supabaseKey = env.SUPABASE_ANON_KEY ?? ''
 const options = {
   auth: {
     autoRefreshToken: false,
