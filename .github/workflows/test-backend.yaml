@@ -1,0 +1,27 @@
+name: test-backend
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - run: supabase start
+        working-directory: ./backend/
+      - run: supabase test db
+        working-directory: ./backend/
+      - run: deno test --allow-all ./functions/tests
+        working-directory: ./backend/supabase/
