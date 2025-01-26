@@ -20,4 +20,4 @@ jobs:
       - run: supabase test db
         working-directory: ./backend/
       - run: deno test --allow-all ./functions/tests/test-workflow-test.ts --env-file .env.local
-        working-directory: ./supabase/
+        working-directory: ./backend/supabase/
