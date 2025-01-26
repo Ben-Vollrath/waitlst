@@ -15,7 +15,7 @@ jobs:
         with:
           version: latest
 
-      - run: supabase start
+      - run: supabase start --exclude realtime,storage-api,imgproxy,kong,inbucket,postgres-meta,studio,edge-runtime,logflare,vector
         working-directory: ./backend/
       - run: supabase test db
         working-directory: ./backend/
