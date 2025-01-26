@@ -5,6 +5,3 @@ name text,
 email text,
 created_at timestamptz default now()
 );
-
-
-DROP table workflow_test;

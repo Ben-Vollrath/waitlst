@@ -1,0 +1,1 @@
+DROP table workflow_test;
