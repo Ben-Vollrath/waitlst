@@ -27,6 +27,7 @@ jobs:
 
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
       PROJECT_ID: tdvwkylywuowwkeizjed
 
     steps:
@@ -36,7 +37,7 @@ jobs:
         with:
           version: latest
 
-      - run: supabase link --project-ref $PROJECT_ID
+      - run: supabase link --project-ref $PROJECT_ID --password $SUPABASE_DB_PASSWORD
         working-directory: ./backend/
       - run: supabase db push
         working-directory: ./backend/
