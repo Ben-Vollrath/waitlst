@@ -1,13 +1,12 @@
-name: Deploy Function
+name: Deploy Function & Migration
 
 on:
   push:
     branches:
       - create-initial-structure
-  workflow_dispatch:
 
 jobs:
-  deploy:
+  deploy-function:
     runs-on: ubuntu-latest
 
     env:
@@ -22,4 +21,22 @@ jobs:
           version: latest
 
       - run: supabase functions deploy test-workflow --project-ref $PROJECT_ID
+        working-directory: ./backend/
+  deploy-migration:
+    runs-on: ubuntu-latest
+
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      PROJECT_ID: tdvwkylywuowwkeizjed
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - run: supabase link --project-ref $PROJECT_ID
+        working-directory: ./backend/
+      - run: supabase db push
         working-directory: ./backend/
