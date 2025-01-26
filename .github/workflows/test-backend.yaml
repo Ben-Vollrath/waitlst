@@ -6,7 +6,7 @@ on:
       - "**"
 
 jobs:
-  test-db:
+  test-backend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,4 +18,6 @@ jobs:
       - run: supabase start
         working-directory: ./backend/
       - run: supabase test db
+        working-directory: ./backend/
+      - run: deno test --allow-all supabase/functions/tests/test-workflow-test.ts --env-file .env.local
         working-directory: ./backend/
