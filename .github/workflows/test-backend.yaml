@@ -15,6 +15,10 @@ jobs:
         with:
           version: latest
 
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
       - run: supabase start
         working-directory: ./backend/
       - run: supabase test db
