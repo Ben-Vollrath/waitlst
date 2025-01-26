@@ -22,3 +22,4 @@ jobs:
           version: latest
 
       - run: supabase functions deploy github-action-deploy --project-ref $PROJECT_ID
+        working-directory: ./backend/
