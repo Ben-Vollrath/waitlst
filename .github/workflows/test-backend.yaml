@@ -15,5 +15,7 @@ jobs:
         with:
           version: latest
 
+      - run: supabase start
+        working-directory: ./backend/
       - run: supabase test db
         working-directory: ./backend/
