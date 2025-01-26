@@ -19,5 +19,5 @@ jobs:
         working-directory: ./backend/
       - run: supabase test db
         working-directory: ./backend/
-      - run: deno test --allow-all supabase/functions/tests/test-workflow-test.ts --env-file .env.local
-        working-directory: ./backend/
+      - run: deno test --allow-all ./functions/tests/test-workflow-test.ts --env-file .env.local
+        working-directory: ./supabase/
