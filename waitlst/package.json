@@ -16,6 +16,7 @@
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
     "@supabase/supabase-js": "^2.48.1",
+    "@vercel/speed-insights": "^1.1.0",
     "@vueuse/core": "^12.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
