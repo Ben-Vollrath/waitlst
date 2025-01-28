@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HomeNavBar from '@/components/HomeNavBar.vue'
+</script>
 
 <template>
-  <main></main>
+  <HomeNavBar />
 </template>

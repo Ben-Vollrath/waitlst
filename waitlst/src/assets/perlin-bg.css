@@ -1,0 +1,41 @@
+.perlin-bg {
+  --size: 20px;
+}
+
+.perlin-bg * {
+  box-sizing: border-box;
+}
+
+.perlin-bg .el {
+  background: conic-gradient(from 180deg at 50% 70%,
+      hsla(0, 0%, 98%, 1) 0deg,
+      #eec32d 72.0000010728836deg,
+      #ec4b4b 144.0000021457672deg,
+      #709ab9 216.00000858306885deg,
+      #4dffbf 288.0000042915344deg,
+      hsla(0, 0%, 98%, 1) 1turn);
+  width: 100%;
+  height: 100%;
+  -webkit-mask: radial-gradient(circle at 50% 50%, white 2px, transparent 2.5px) 50% 50% / var(--size) var(--size),
+    url("https://assets.codepen.io/605876/noise-mask.png") 256px 50% / 256px 256px;
+  mask: radial-gradient(circle at 50% 50%, white 2px, transparent 2.5px) 50% 50% / var(--size) var(--size),
+    url("https://assets.codepen.io/605876/noise-mask.png") 256px 50% / 256px 256px;
+  -webkit-mask-composite: source-in, xor;
+  mask-composite: intersect;
+  -webkit-animation: flicker 20s infinite linear;
+  animation: flicker 20s infinite linear;
+}
+
+@-webkit-keyframes flicker {
+  to {
+    -webkit-mask-position: 50% 50%, 0 50%;
+    mask-position: 50% 50%, 0 50%;
+  }
+}
+
+@keyframes flicker {
+  to {
+    -webkit-mask-position: 50% 50%, 0 50%;
+    mask-position: 50% 50%, 0 50%;
+  }
+}
