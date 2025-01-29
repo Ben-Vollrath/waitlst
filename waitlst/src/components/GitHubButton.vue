@@ -1,22 +1,24 @@
 <template>
-  <div class="flex justify-center items-center">
-    <a :href="repoUrl" target="_blank" rel="noopener noreferrer" class="github-link">
-      <button
-        class="flex items-center border border-gray-300 h-8 rounded-lg px-2 py-1 hover:bg-gray-800 shadow-sm"
-      >
-        <img src="@/assets/github-mark-white.svg" alt="GitHub Logo" class="h-4 w-4 mr-3" />
-        <span class="text-sm font-semibold mr-3">Star</span>
-        <div class="w-px h-6 bg-gray-300 mx-3"></div>
-        <span v-if="stars !== null" class="text-sm font-semibold">{{ stars }}</span>
-        <span v-else class="text-sm font-medium">-</span>
-      </button>
+  <Button variant="outline">
+    <a
+      :href="repoUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center github-link"
+    >
+      <img src="@/assets/github-mark-white.svg" alt="GitHub Logo" class="h-4 w-4 mr-2" />
+      <span class="text-sm font-semibold">Star</span>
+      <div class="w-px h-6 bg-input mx-2"></div>
+      <span v-if="stars !== null" class="text-sm font-semibold">{{ stars }}</span>
+      <span v-else class="text-sm font-medium">-</span>
     </a>
-  </div>
+  </Button>
 </template>
 
 <script setup lang="ts">
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
+import Button from '@/components/ui/button/Button.vue'
 
 const stars = ref<number>(0)
 const repoUrl = 'https://github.com/Ben-Vollrath/waitlst'
