@@ -6,13 +6,13 @@ import Button from '@/components/ui/button/Button.vue'
 
 <template>
   <div class="flex items-center justify-around max-w-7xl mx-auto py-1">
-    <div class="flex items-center space-x-0">
-      <a href="#" class="inline-block">
-        <img src="@/assets/logo.svg" alt="Waitlst logo" class="h-12 w-12" />
-      </a>
-      <h1 class="font-bold text-xl">Waitlst</h1>
-    </div>
-    <div>
+    <div class="flex items-center space-x-8">
+      <Button variant="fullghost">
+        <a href="#" class="inline-block">
+          <img src="@/assets/logo.svg" alt="Waitlst logo" class="h-12 w-12" />
+        </a>
+        <h1 class="font-bold text-xl">Waitlst</h1>
+      </Button>
       <NavigationElements />
     </div>
     <div class="flex space-x-4">

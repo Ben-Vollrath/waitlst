@@ -86,15 +86,6 @@ import '@/assets/perlin-bg.css'
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink
-          class="text-xl font-bold"
-          href="/docs/introduction"
-          :class="navigationMenuTriggerStyle()"
-        >
-          Docs
-        </NavigationMenuLink>
-      </NavigationMenuItem>
     </NavigationMenuList>
   </NavigationMenu>
 </template>
