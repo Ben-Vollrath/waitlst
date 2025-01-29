@@ -65,7 +65,7 @@ const toggleMenu = () => {
   <!-- Mobile Menu Dropdown -->
   <div
     v-if="isMenuOpen"
-    class="md:hidden absolute top-16 left-0 w-full shadow-lg border-t border-zinc-200 dark:border-zinc-800 p-4"
+    class="md:hidden absolute top-16 left-0 w-full h-full shadow-lg border-t bg-background border-zinc-200 dark:border-zinc-800 p-4"
   >
     <div class="flex flex-col space-y-4">
       <div></div>
