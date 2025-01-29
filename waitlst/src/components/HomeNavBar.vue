@@ -17,7 +17,7 @@ const toggleMenu = () => {
 <template>
   <div>
     <div
-      class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 flex items-center justify-between py-2"
+      class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 flex items-center justify-between py-2"
     >
       <!-- Left Section (Logo and Name) -->
       <div class="flex items-center gap-12">
