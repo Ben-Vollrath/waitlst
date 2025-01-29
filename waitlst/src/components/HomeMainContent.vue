@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BarChartIcon, DownloadIcon, LightningBoltIcon } from '@radix-icons/vue'
-import Button from './ui/button/Button.vue'
-import FeatureItem from '@/components/BaseFeatureItem.vue'
+import Button from '@/components/ui/button/Button.vue'
+import FeatureItem from '@/components/FeatureItem.vue'
 </script>
 
 <template>
