@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { BarChartIcon, DownloadIcon, LightningBoltIcon } from '@radix-icons/vue'
 import Button from '@/components/ui/button/Button.vue'
-import FeatureItem from '@/components/FeatureItem.vue'
+import FeatureItem from '@/components/HomeFeatureItem.vue'
+import HomeStepDisplay from '@/components/HomeStepDisplay.vue'
 </script>
 
 <template>
   <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 grid gap-16 sm:gap-24">
     <div class="grid items-center gap-8 sm:grid-cols-12">
       <div class="flex flex-col gap-4 sm:col-span-12">
-        <h1 class="text-4xl font-semibold text-black dark:text-white">Waitlists for developers.</h1>
+        <h1 class="text-4xl font-semibold dark:text-white">Waitlists for developers.</h1>
         <p class="text-neutral-500 dark:text-neutral-400 sm:mt-2 md:text-lg">
           Add a waitlist to your site in minutes — no hassle, just one API call.
         </p>
@@ -29,4 +30,5 @@ import FeatureItem from '@/components/FeatureItem.vue'
       />
     </div>
   </div>
+  <HomeStepDisplay />
 </template>
