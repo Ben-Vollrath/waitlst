@@ -21,12 +21,10 @@ const toggleMenu = () => {
     >
       <!-- Left Section (Logo and Name) -->
       <div class="flex items-center gap-12">
-        <Button variant="fullghost">
-          <a href="#" class="inline-block">
-            <img src="@/assets/logo.svg" alt="Waitlst logo" class="h-12 w-12" />
-          </a>
+        <a href="#" class="inline-block gap-2 flex items-center">
+          <img src="@/assets/logo.svg" alt="Waitlst logo" class="h-12 w-12" />
           <h1 class="font-bold text-xl">Waitlst</h1>
-        </Button>
+        </a>
         <NavigationElements class="hidden md:flex" />
       </div>
 
