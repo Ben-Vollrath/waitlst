@@ -1,30 +1,81 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import NavigationElements from '@/components/NavigationElements.vue'
 import GitHubButton from '@/components/GitHubButton.vue'
 import Button from '@/components/ui/button/Button.vue'
+import NavigationFeaturesContent from '@/components/NavigationFeaturesContent.vue'
+
+// State for mobile menu visibility
+const isMenuOpen = ref(false)
+
+// Toggle function
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
 </script>
 
 <template>
   <div class="grid gap-16 sm:gap-24 pb-16">
     <div>
       <div
-        class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between py-2 border-b border-zinc-200 dark:border-zinc-800"
+        class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between py-2"
       >
-        <div class="flex items-center gap-4">
+        <!-- Left Section (Logo and Name) -->
+        <div class="flex items-center gap-12">
           <Button variant="fullghost">
             <a href="#" class="inline-block">
               <img src="@/assets/logo.svg" alt="Waitlst logo" class="h-12 w-12" />
             </a>
             <h1 class="font-bold text-xl">Waitlst</h1>
           </Button>
-          <NavigationElements />
+          <NavigationElements class="hidden md:flex" />
         </div>
-        <div class="flex items-center gap-4">
+
+        <!-- Desktop Navigation (Hidden on Mobile) -->
+        <div class="hidden md:flex items-center gap-4">
           <GitHubButton />
           <Button size="sm">Coming Soon!</Button>
         </div>
+
+        <!-- Mobile Menu Button (Burger Icon) -->
+        <button @click="toggleMenu" class="md:hidden p-2 focus:outline-none">
+          <svg
+            v-if="!isMenuOpen"
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg
+            v-else
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
     </div>
-    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-16 sm:gap-24"></div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div
+      v-if="isMenuOpen"
+      class="md:hidden absolute top-16 left-0 w-full shadow-lg border-t border-zinc-200 dark:border-zinc-800 p-4"
+    >
+      <div class="flex flex-col space-y-4">
+        <div></div>
+        <GitHubButton />
+        <Button size="sm">Coming Soon!</Button>
+        <NavigationFeaturesContent />
+      </div>
+    </div>
   </div>
 </template>
