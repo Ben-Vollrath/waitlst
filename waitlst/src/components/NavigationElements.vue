@@ -17,7 +17,9 @@ import NavigationFeaturesContent from '@/components/NavigationFeaturesContent.vu
   <NavigationMenu>
     <NavigationMenuList>
       <NavigationMenuItem>
-        <NavigationMenuTrigger class="text-xl font-bold">Features</NavigationMenuTrigger>
+        <NavigationMenuTrigger class="text-xl font-bold bg-transparent"
+          >Features</NavigationMenuTrigger
+        >
         <NavigationMenuContent>
           <NavigationFeaturesContent />
         </NavigationMenuContent>
