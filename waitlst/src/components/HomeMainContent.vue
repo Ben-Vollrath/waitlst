@@ -1,34 +1,39 @@
 <script setup lang="ts">
-import { BarChartIcon, DownloadIcon, LightningBoltIcon } from '@radix-icons/vue'
+import { Zap, Download, ChartSpline } from 'lucide-vue-next'
 import Button from '@/components/ui/button/Button.vue'
 import FeatureItem from '@/components/HomeFeatureItem.vue'
 import HomeStepDisplay from '@/components/HomeStepDisplay.vue'
 </script>
 
 <template>
-  <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 grid gap-16 sm:gap-24">
-    <div class="grid items-center gap-8 sm:grid-cols-12">
-      <div class="flex flex-col gap-4 sm:col-span-12">
-        <h1 class="text-4xl font-semibold dark:text-white">Waitlists for developers.</h1>
-        <p class="text-neutral-500 dark:text-neutral-400 sm:mt-2 md:text-lg">
-          Add a waitlist to your site in minutes — no hassle, just one API call.
-        </p>
-        <Button>Coming Soon!</Button>
-      </div>
+  <div
+    class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 sm:gap-24"
+  >
+    <!-- Left Section: Headline + Text + Button -->
+    <div class="flex flex-col gap-4 max-w-lg text-center lg:text-left">
+      <h1 class="text-4xl font-semibold dark:text-white">Waitlists for developers.</h1>
+      <p class="text-neutral-500 dark:text-neutral-400 sm:mt-2 md:text-lg">
+        Add a waitlist to your site in minutes — no hassle, just one API call.
+      </p>
+      <Button>Coming Soon!</Button>
     </div>
-    <div class="sm:col-span-7 sm:col-start-3 space-y-8">
+
+    <!-- Right Section: Feature Items -->
+    <div class="flex flex-col space-y-8 w-full max-w-md">
       <FeatureItem
-        :icon="LightningBoltIcon"
+        :icon="Zap"
         title="Fast Implementation"
         description="Implement into your project in minutes."
       />
-      <FeatureItem :icon="BarChartIcon" title="Analytics" description="Ready to go Analytics." />
+      <FeatureItem :icon="ChartSpline" title="Analytics" description="Ready to go Analytics." />
       <FeatureItem
-        :icon="DownloadIcon"
+        :icon="Download"
         title="Data Export"
         description="Export your Data and use it anywhere."
       />
     </div>
   </div>
-  <HomeStepDisplay />
+
+  <!-- Step Display (Hidden on Mobile, Shown on Desktop) -->
+  <HomeStepDisplay class="mt-24 hidden md:flex" />
 </template>
