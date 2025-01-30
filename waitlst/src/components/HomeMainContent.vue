@@ -30,7 +30,7 @@ async function joinWaitlist(email, waitlistId) {
     class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 sm:gap-24"
   >
     <!-- Left Section: Headline + Text + Button -->
-    <div class="flex flex-col gap-4 max-w-lg text-center lg:text-left">
+    <div id="main" class="flex flex-col gap-4 max-w-lg text-center lg:text-left">
       <h1 class="text-4xl font-semibold dark:text-white">Waitlists for developers.</h1>
       <p class="text-neutral-500 dark:text-neutral-400 sm:mt-2 md:text-lg">
         Add a waitlist to your site in minutes — no hassle, just one API call.
@@ -56,7 +56,7 @@ async function joinWaitlist(email, waitlistId) {
 
   <!-- Step Display (Hidden on Mobile, Shown on Desktop) -->
   <HomeStepDisplay class="mt-36 mb-24 hidden lg:flex" />
-  <div class="flex flex-col gap-4 w-full text-center">
+  <div id="introduction" class="flex flex-col gap-4 w-full text-center">
     <h1 class="text-4xl font-semibold dark:text-white">Integrate in minutes</h1>
     <p class="text-neutral-500 dark:text-neutral-400 sm:mt-2 md:text-lg max-w-lg mx-auto">
       A simple, elegant API endpoint, so you can start building your build pad in minutes. Integrate
