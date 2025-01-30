@@ -14,11 +14,13 @@ const delegatedProps = computed(() => {
 })
 
 const forwarded = useForwardProps(delegatedProps)
+
+type StepperSlotProps = Parameters<InstanceType<typeof StepperItem>['$slots']['default']>[0]
 </script>
 
 <template>
   <StepperItem
-    v-slot="slotProps"
+    v-slot="slotProps: StepperSlotProps"
     v-bind="forwarded"
     :class="cn('flex items-center gap-2 group data-[disabled]:pointer-events-none', props.class)"
   >
