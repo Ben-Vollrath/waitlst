@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import NavigationElements from '@/components/NavigationElements.vue'
+import LandingNavigationElements from '@/components/LandingNavigationElements.vue'
 import GitHubButton from '@/components/GitHubButton.vue'
 import Button from '@/components/ui/button/Button.vue'
-import NavigationFeaturesContent from '@/components/NavigationFeaturesContent.vue'
+import LandingNavigationFeaturesContent from '@/components/LandingNavigationFeaturesContent.vue'
 
 // State for mobile menu visibility
 const isMenuOpen = ref(false)
@@ -25,7 +25,7 @@ const toggleMenu = () => {
           <img src="@/assets/logo.svg" alt="Waitlst logo" class="h-12 w-12" />
           <h1 class="font-bold text-xl">Waitlst</h1>
         </a>
-        <NavigationElements class="hidden md:flex" />
+        <LandingNavigationElements class="hidden md:flex" />
       </div>
 
       <!-- Desktop Navigation (Hidden on Mobile) -->
@@ -71,7 +71,7 @@ const toggleMenu = () => {
       <div></div>
       <GitHubButton />
       <Button size="sm">Coming Soon!</Button>
-      <NavigationFeaturesContent @closeMenu="isMenuOpen = false" />
+      <LandingNavigationFeaturesContent @closeMenu="isMenuOpen = false" />
     </div>
   </div>
 </template>

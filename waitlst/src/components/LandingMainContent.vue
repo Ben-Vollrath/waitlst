@@ -3,9 +3,9 @@ import { ref } from 'vue'
 import { Zap, Download, ChartSpline, FileText, Clock, Database } from 'lucide-vue-next'
 import Button from '@/components/ui/button/Button.vue'
 import { Input } from '@/components/ui/input'
-import FeatureItem from '@/components/HomeFeatureItem.vue'
-import HomeStepDisplay from '@/components/HomeStepDisplay.vue'
-import HomeAnalyticsChart from '@/components/HomeAnalyticsChart.vue'
+import LandingFeatureItem from '@/components/LandingFeatureItem.vue'
+import LandingStepDisplay from '@/components/LandingStepDisplay.vue'
+import LandingAnalyticsChart from '@/components/LandingAnalyticsChart.vue'
 import { VCodeBlock } from '@wdns/vue-code-block'
 
 const code = ref(`
@@ -49,19 +49,23 @@ async function joinWaitlist(email, waitlistId) {
       </div>
 
       <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-2">
-        🚧 Uh oh... looks like our waitlist is still waiting for Waitlst. Stay tuned! 😅
+        🚧 Uh oh... looks like our waitlist is still waiting for Waitlst. Stay tuned!
       </p>
     </div>
 
     <!-- Right Section: Feature Items -->
     <div class="flex flex-col space-y-8 w-full max-w-md">
-      <FeatureItem
+      <LandingFeatureItem
         :icon="Zap"
         title="Fast Integration"
         description="Implement into your project in minutes."
       />
-      <FeatureItem :icon="ChartSpline" title="Analytics" description="Ready to go Analytics." />
-      <FeatureItem
+      <LandingFeatureItem
+        :icon="ChartSpline"
+        title="Analytics"
+        description="Ready to go Analytics."
+      />
+      <LandingFeatureItem
         :icon="Download"
         title="Data Export"
         description="Export your Data and use it anywhere."
@@ -70,7 +74,7 @@ async function joinWaitlist(email, waitlistId) {
   </div>
 
   <!-- Step Display (Hidden on Mobile, Shown on Desktop) -->
-  <HomeStepDisplay class="mt-36 mb-24 hidden lg:flex" />
+  <LandingStepDisplay class="mt-36 mb-24 hidden lg:flex" />
   <div id="introduction" class="scroll-mt-16 flex flex-col gap-4 w-full text-center">
     <h1 class="text-4xl font-semibold dark:text-white">Integrate in minutes</h1>
     <p class="text-neutral-500 dark:text-neutral-400 sm:mt-2 md:text-lg max-w-lg mx-auto">
@@ -95,7 +99,7 @@ async function joinWaitlist(email, waitlistId) {
       and optimize your onboarding strategy—all from a powerful, easy-to-use dashboard.
     </p>
   </div>
-  <HomeAnalyticsChart />
+  <LandingAnalyticsChart />
   <div id="export" class="scroll-mt-16 flex flex-col gap-4 w-full text-center">
     <h1 class="text-4xl font-semibold dark:text-white">Seamless Data Export</h1>
     <p class="text-neutral-500 dark:text-neutral-400 sm:mt-2 md:text-lg max-w-lg mx-auto">
@@ -104,17 +108,17 @@ async function joinWaitlist(email, waitlistId) {
     </p>
   </div>
   <div class="flex flex-wrap justify-center gap-6 md:space-x-8">
-    <FeatureItem
+    <LandingFeatureItem
       :icon="FileText"
       title="Multiple Formats"
       description="Export waitlist data in CSV, JSON, and Excel for easy integration."
     />
-    <FeatureItem
+    <LandingFeatureItem
       :icon="Clock"
       title="Instant Access"
       description="Download your data in one click—no complex setup required."
     />
-    <FeatureItem
+    <LandingFeatureItem
       :icon="Database"
       title="Sync with Your Tools"
       description="Seamlessly integrate with CRMs, analytics tools, and databases."

@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/navigation-menu'
 
 import '@/assets/perlin-bg.css'
-import NavigationFeaturesContent from '@/components/NavigationFeaturesContent.vue'
+import NavigationFeaturesContent from '@/components/LandingNavigationFeaturesContent.vue'
 </script>
 
 <template>
