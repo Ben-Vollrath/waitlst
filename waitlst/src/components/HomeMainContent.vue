@@ -4,6 +4,7 @@ import { Zap, Download, ChartSpline } from 'lucide-vue-next'
 import Button from '@/components/ui/button/Button.vue'
 import FeatureItem from '@/components/HomeFeatureItem.vue'
 import HomeStepDisplay from '@/components/HomeStepDisplay.vue'
+import HomeAnalyticsChart from '@/components/HomeAnalyticsChart.vue'
 import { VCodeBlock } from '@wdns/vue-code-block'
 
 const code = ref(`
@@ -73,4 +74,12 @@ async function joinWaitlist(email, waitlistId) {
       class="max-w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto overflow-x-auto"
     />
   </div>
+  <div id="analytics" class="flex flex-col gap-4 w-full text-center">
+    <h1 class="text-4xl font-semibold dark:text-white">Track, Optimize, and Grow</h1>
+    <p class="text-neutral-500 dark:text-neutral-400 sm:mt-2 md:text-lg max-w-lg mx-auto">
+      Gain real-time insights into your waitlist. Track user engagement, measure conversion rates,
+      and optimize your onboarding strategy—all from a powerful, easy-to-use dashboard.
+    </p>
+  </div>
+  <HomeAnalyticsChart />
 </template>
