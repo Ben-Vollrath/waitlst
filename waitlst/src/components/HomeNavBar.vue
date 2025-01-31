@@ -71,7 +71,7 @@ const toggleMenu = () => {
       <div></div>
       <GitHubButton />
       <Button size="sm">Coming Soon!</Button>
-      <NavigationFeaturesContent />
+      <NavigationFeaturesContent @closeMenu="isMenuOpen = false" />
     </div>
   </div>
 </template>

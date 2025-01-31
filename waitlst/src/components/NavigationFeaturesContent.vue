@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineEmits } from 'vue'
+
+const emit = defineEmits(['closeMenu'])
+</script>
 <template>
   <ul
     class="grid gap-3 md:p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]"
@@ -13,6 +17,7 @@
           <a
             class="flex h-full w-full select-none flex-col justify-end bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
             href="/#main"
+            @click="emit('closeMenu')"
           >
             <img src="@/assets/logo.svg" class="h-12 w-12" />
             <div class="mb-2 mt-4 text-lg font-medium">Waitlst API</div>
@@ -28,6 +33,7 @@
       <NavigationMenuLink as-child>
         <a
           href="/#introduction"
+          @click="emit('closeMenu')"
           class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
         >
           <div class="text-sm font-medium leading-none">Introduction</div>
@@ -41,6 +47,7 @@
       <NavigationMenuLink as-child>
         <a
           href="/#analytics"
+          @click="emit('closeMenu')"
           class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
         >
           <div class="text-sm font-medium leading-none">Analytics</div>
@@ -54,6 +61,7 @@
       <NavigationMenuLink as-child>
         <a
           href="/docs/typography"
+          @click="emit('closeMenu')"
           class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
         >
           <div class="text-sm font-medium leading-none">Export</div>
