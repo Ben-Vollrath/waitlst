@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { Zap, Download, ChartSpline, FileText, Clock, Database } from 'lucide-vue-next'
 import Button from '@/components/ui/button/Button.vue'
+import { Input } from '@/components/ui/input'
 import FeatureItem from '@/components/HomeFeatureItem.vue'
 import HomeStepDisplay from '@/components/HomeStepDisplay.vue'
 import HomeAnalyticsChart from '@/components/HomeAnalyticsChart.vue'
@@ -36,7 +37,20 @@ async function joinWaitlist(email, waitlistId) {
       <p class="text-neutral-500 dark:text-neutral-400 sm:mt-2 md:text-lg">
         Add a waitlist to your site in minutes — no hassle, just one API call.
       </p>
-      <Button>Coming Soon!</Button>
+
+      <!-- "Broken" Email Signup -->
+      <div class="relative w-full max-w-md">
+        <Input type="email" placeholder="your@email.com" class="w-full" disabled />
+        <Button
+          class="absolute top-1/2 right-2 transform -translate-y-1/2 opacity-50 cursor-not-allowed"
+        >
+          Join Waitlist
+        </Button>
+      </div>
+
+      <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-2">
+        🚧 Uh oh... looks like our waitlist is still waiting for Waitlst. Stay tuned! 😅
+      </p>
     </div>
 
     <!-- Right Section: Feature Items -->
