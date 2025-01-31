@@ -71,13 +71,13 @@ const toggleMenu = () => {
   <!-- Mobile Menu Dropdown -->
   <div
     v-if="isMenuOpen"
-    class="md:hidden absolute z-10 top-16 left-0 w-full h-full shadow-lg border-t bg-background border-zinc-200 dark:border-zinc-800 p-4"
+    class="md:hidden fixed z-10 top-16 left-0 w-full h-full shadow-lg border-t bg-background border-zinc-200 dark:border-zinc-800 p-4"
   >
     <div class="flex flex-col space-y-4">
       <div></div>
       <GitHubButton />
       <Button size="sm">Coming Soon!</Button>
-      <LandingNavigationFeaturesContent @closeMenu="isMenuOpen = false" />
+      <LandingNavigationFeaturesContent @closeMenu="toggleMenu" />
     </div>
   </div>
 </template>
