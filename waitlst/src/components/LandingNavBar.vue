@@ -11,6 +11,12 @@ const isMenuOpen = ref(false)
 // Toggle function
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
+
+  if (isMenuOpen.value) {
+    document.body.classList.add('overflow-hidden')
+  } else {
+    document.body.classList.remove('overflow-hidden')
+  }
 }
 </script>
 
@@ -65,7 +71,7 @@ const toggleMenu = () => {
   <!-- Mobile Menu Dropdown -->
   <div
     v-if="isMenuOpen"
-    class="md:hidden absolute top-16 left-0 w-full h-full shadow-lg border-t bg-background border-zinc-200 dark:border-zinc-800 p-4"
+    class="md:hidden absolute z-10 top-16 left-0 w-full h-full shadow-lg border-t bg-background border-zinc-200 dark:border-zinc-800 p-4"
   >
     <div class="flex flex-col space-y-4">
       <div></div>

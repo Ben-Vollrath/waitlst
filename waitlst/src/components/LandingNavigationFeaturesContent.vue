@@ -5,7 +5,9 @@ const emit = defineEmits(['closeMenu'])
   <ul
     class="grid gap-3 md:p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]"
   >
-    <li class="row-span-3 h-full w-full perlin-bg relative overflow-hidden rounded-md">
+    <li
+      class="bg-background row-span-3 h-full w-full perlin-bg relative overflow-hidden rounded-md"
+    >
       <div class="absolute inset-0 z-0 el"></div>
       <!-- Background Animation -->
 
