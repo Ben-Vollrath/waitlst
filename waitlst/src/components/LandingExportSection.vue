@@ -11,7 +11,7 @@ import LandingFeatureItem from '@/components/LandingFeatureItem.vue'
       CSV, JSON, and Excel, making it easy to integrate with your existing tools and workflows.
     </p>
   </div>
-  <div class="flex flex-wrap justify-center gap-6 md:space-x-8 ml-4">
+  <div class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6 px-4">
     <LandingFeatureItem
       :icon="FileText"
       title="Multiple Formats"
