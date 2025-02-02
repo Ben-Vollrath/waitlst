@@ -3,6 +3,30 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { supabase } from '../utils/supabase.ts'
+
+import { cn } from '@/lib/utils'
+import { PulseLoader } from '@/components/ui/pulse-loader'
+import { ref } from 'vue'
+
+const isLoading = ref(false)
+const email = ref('')
+
+const handleEmailLogin = async () => {
+  try {
+    isLoading.value = true
+    const { error } = await supabase.auth.signInWithOtp({
+      email: email.value,
+    })
+    if (error) throw error
+  } catch (error) {
+    if (error instanceof Error) {
+      alert(error.message)
+    }
+  } finally {
+    isLoading.value = false
+  }
+}
 </script>
 
 <template>
@@ -18,11 +42,21 @@ import { Label } from '@/components/ui/label'
             <Label for="email">Email</Label>
             <Input id="email" type="email" placeholder="m@example.com" required />
           </div>
-          <Button type="submit" class="w-full">Login</Button>
+          <Button type="submit" :disabled="isLoading">
+            <template v-if="isLoading">
+              <PulseLoader :loading="true" size="8px" margin="5px" color-class="bg-black" />
+            </template>
+            <template v-else> Sign In with Email </template>
+          </Button>
           <div class="h-0.5 w-full bg-secondary"></div>
-          <Button variant="outline" class="w-full">
-            <img src="@/assets/github-mark-white.svg" alt="GitHub Logo" class="h-4 w-4 mr-2" />
-            Continue with GitHub
+          <Button type="submit" :disabled="isLoading" variant="outline">
+            <template v-if="isLoading">
+              <PulseLoader :loading="true" size="8px" margin="5px" color-class="bg-white" />
+            </template>
+            <template v-else>
+              <img src="@/assets/github-mark-white.svg" alt="GitHub Logo" class="h-4 w-4 mr-2" />
+              Continue with GitHub
+            </template>
           </Button>
         </div>
       </CardContent>
