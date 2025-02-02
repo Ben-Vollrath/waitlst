@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { supabase } from '../utils/supabase.ts'
 
-import { cn } from '@/lib/utils'
 import { PulseLoader } from '@/components/ui/pulse-loader'
 import { ref } from 'vue'
 
@@ -37,28 +36,39 @@ const handleEmailLogin = async () => {
         <CardDescription>If you already have an account, we'll log you in. </CardDescription>
       </CardHeader>
       <CardContent>
-        <div class="grid gap-4">
-          <div class="grid gap-2">
-            <Label for="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" required />
+        <form @submit.prevent="handleEmailLogin">
+          <div class="grid gap-4">
+            <div class="grid gap-2">
+              <Label for="email">Email</Label>
+              <Input
+                id="email"
+                placeholder="name@example.com"
+                type="email"
+                auto-capitalize="none"
+                auto-complete="email"
+                auto-correct="off"
+                :disabled="isLoading"
+                v-model="email"
+              />
+            </div>
+            <Button type="submit" :disabled="isLoading">
+              <template v-if="isLoading">
+                <PulseLoader :loading="true" size="8px" margin="5px" color-class="bg-black" />
+              </template>
+              <template v-else> Sign In with Email </template>
+            </Button>
+            <div class="h-0.5 w-full bg-secondary"></div>
+            <Button type="submit" :disabled="isLoading" variant="outline">
+              <template v-if="isLoading">
+                <PulseLoader :loading="true" size="8px" margin="5px" color-class="bg-white" />
+              </template>
+              <template v-else>
+                <img src="@/assets/github-mark-white.svg" alt="GitHub Logo" class="h-4 w-4 mr-2" />
+                Continue with GitHub
+              </template>
+            </Button>
           </div>
-          <Button type="submit" :disabled="isLoading">
-            <template v-if="isLoading">
-              <PulseLoader :loading="true" size="8px" margin="5px" color-class="bg-black" />
-            </template>
-            <template v-else> Sign In with Email </template>
-          </Button>
-          <div class="h-0.5 w-full bg-secondary"></div>
-          <Button type="submit" :disabled="isLoading" variant="outline">
-            <template v-if="isLoading">
-              <PulseLoader :loading="true" size="8px" margin="5px" color-class="bg-white" />
-            </template>
-            <template v-else>
-              <img src="@/assets/github-mark-white.svg" alt="GitHub Logo" class="h-4 w-4 mr-2" />
-              Continue with GitHub
-            </template>
-          </Button>
-        </div>
+        </form>
       </CardContent>
     </Card>
   </div>
