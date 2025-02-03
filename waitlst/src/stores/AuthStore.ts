@@ -14,7 +14,6 @@ export const useAuthStore = defineStore('auth', {
   actions: {
 
     async initializeAuth() {
-      console.log('initializeAuth')
       // Fetch the current session and set it to the store
       const { data } = await supabase.auth.getSession()
       this.id = data?.session?.user?.id || null
