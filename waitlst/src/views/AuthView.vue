@@ -3,13 +3,18 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { supabase } from '../utils/supabase.ts'
+import { supabase } from '@/utils/supabase.ts'
+import { useAuthStore } from '@/stores/AuthStore.ts'
+import { useRouter } from 'vue-router'
 
 import { PulseLoader } from '@/components/ui/pulse-loader'
-import { ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 
 const isLoading = ref(false)
 const email = ref('')
+
+const router = useRouter()
+const authStore = useAuthStore()
 
 const handleEmailLogin = async () => {
   try {
@@ -26,6 +31,18 @@ const handleEmailLogin = async () => {
     isLoading.value = false
   }
 }
+
+onMounted(async () => {
+  if (authStore.id) {
+    router.push('/dashboard')
+  }
+})
+
+watchEffect(() => {
+  if (authStore.id) {
+    router.push('/dashboard')
+  }
+})
 </script>
 
 <template>
