@@ -9,10 +9,6 @@ import OAuthLoginButton from '@/components/AuthGitHubLogin.vue'
 const router = useRouter()
 const authStore = useAuthStore()
 
-onMounted(() => {
-  if (authStore.id) router.push('/dashboard')
-})
-
 watchEffect(() => {
   if (authStore.id) router.push('/dashboard')
 })
