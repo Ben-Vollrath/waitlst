@@ -65,6 +65,24 @@ Thank you for your interest in contributing to **Waitlst**! Follow the steps bel
      npm run dev
      ```
 
+## Local Authentication
+
+On local development environment magic link authentication is recommended.
+
+To log in simply use the email login functionality of the app (available at /auth).
+
+Any emails send in local mode will be found at
+```
+Inbucket URL: http://127.0.0.1:54324
+```
+
+You can always find the Inbucket URL by using
+```
+supabase status
+```
+
+In the Inbucket Interface, select the Email account you entered and click the link in the latest email.
+
 ## Submitting Changes
 
 1. **Create a New Branch**:
