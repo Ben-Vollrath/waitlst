@@ -51,14 +51,11 @@ describe('DashboardView.vue', () => {
 
     // Create Pinia store with initial state
     const pinia = createTestingPinia({
-      initialState: {
-        auth: {
-          id: '123', // Simulate logged-in user
-          email: 'test@example.com',
-        },
-      },
       createSpy: vi.fn,
     })
+
+    const authStore = useAuthStore()
+    authStore.id = '123'
 
     // Mount the component **after** setting up Pinia
     const wrapper = mount(DashboardView, {
@@ -70,7 +67,6 @@ describe('DashboardView.vue', () => {
     // Wait for reactivity updates
     await flushPromises()
 
-    // Router should NOT navigate to /auth
     expect(mockRouter.push).not.toHaveBeenCalled()
   })
 

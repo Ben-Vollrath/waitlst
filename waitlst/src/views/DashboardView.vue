@@ -3,7 +3,7 @@ import Button from '@/components/ui/button/Button.vue'
 import { useAuthStore } from '@/stores/AuthStore'
 import { useRouter } from 'vue-router'
 import { supabase } from '@/utils/supabase.ts'
-import { computed, watchEffect } from 'vue'
+import { onMounted, watchEffect } from 'vue'
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -13,7 +13,9 @@ const handleLogout = () => {
 }
 
 watchEffect(() => {
-  if (!!authStore.id) router.push('/auth')
+  if (!authStore.id) {
+    router.push('/auth')
+  }
 })
 </script>
 
