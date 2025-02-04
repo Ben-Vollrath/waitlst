@@ -40,6 +40,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./waitlst
 
       - name: Run Vitest
         run: npm run test:unit
+        working-directory: ./waitlst
