@@ -3,7 +3,7 @@ name: Deploy Function & Migration
 on:
   workflow_run:
     workflows:
-      - test-backend
+      - test
     types:
       - completed
 
