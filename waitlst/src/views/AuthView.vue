@@ -35,6 +35,25 @@ const handleEmailLogin = async () => {
   }
 }
 
+const signInWithGithub = async () => {
+  try {
+    isLoading.value = true
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: `${window.location.origin}/dashboard`,
+      },
+    })
+    if (error) throw error
+  } catch (error) {
+    if (error instanceof Error) {
+      alert(error.message)
+    }
+  } finally {
+    isLoading.value = false
+  }
+}
+
 onMounted(async () => {
   if (authStore.id) {
     router.push('/dashboard')
@@ -78,7 +97,7 @@ watchEffect(() => {
               <template v-else> Sign In with Email </template>
             </Button>
             <div class="h-0.5 w-full bg-secondary"></div>
-            <Button type="submit" :disabled="isLoading" variant="outline">
+            <Button type="button" @click="signInWithGithub" :disabled="isLoading" variant="outline">
               <template v-if="isLoading">
                 <PulseLoader :loading="true" size="8px" margin="5px" color-class="bg-white" />
               </template>
