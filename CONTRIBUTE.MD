@@ -67,6 +67,7 @@ Thank you for your interest in contributing to **Waitlst**! Follow the steps bel
 
 ## Local Authentication
 
+### Email Authentication
 On local development environment magic link authentication is recommended.
 
 To log in simply use the email login functionality of the app (available at /auth).
@@ -82,6 +83,17 @@ supabase status
 ```
 
 In the Inbucket Interface, select the Email account you entered and click the link in the latest email.
+
+### GitHub Authentication
+To use GitHub Authentication in local development:
+1.  **Create a GitHub OAuth App**
+
+Follow [GitHub OAuth Guide](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) to create an OAuth App.
+
+2. **Enter Credientials in .env**
+Enter your ``client_id`` and ``client_secret`` in ./backend/.env
+
+
 
 ## Submitting Changes
 
