@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { supabase } from '@/utils/supabase.ts'
 import { PulseLoader } from '@/components/ui/pulse-loader'
 import { Button } from '@/components/ui/button'
@@ -8,8 +8,19 @@ import { Label } from '@/components/ui/label'
 
 const isLoading = ref(false)
 const email = ref('')
+const emailError = ref('')
+
+// Watch for changes in email input and clear error when user types
+watch(email, () => {
+  emailError.value = ''
+})
 
 const handleEmailLogin = async () => {
+  if (!email.value) {
+    emailError.value = 'Email is required'
+    return
+  }
+
   try {
     isLoading.value = true
     const { error } = await supabase.auth.signInWithOtp({
@@ -21,7 +32,7 @@ const handleEmailLogin = async () => {
     if (error) throw error
   } catch (error) {
     if (error instanceof Error) {
-      alert(error.message)
+      emailError.value = error.message
     }
   } finally {
     isLoading.value = false
@@ -43,7 +54,9 @@ const handleEmailLogin = async () => {
           auto-correct="off"
           :disabled="isLoading"
           v-model="email"
+          :class="emailError ? 'border-red-500 focus:border-red-500' : ''"
         />
+        <p v-if="emailError" class="text-red-500 text-sm">{{ emailError }}</p>
       </div>
       <Button type="submit" :disabled="isLoading">
         <template v-if="isLoading">
