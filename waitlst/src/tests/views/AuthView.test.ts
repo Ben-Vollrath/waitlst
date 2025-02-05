@@ -12,6 +12,14 @@ vi.mock('vue-router', () => ({
   useRouter: vi.fn(),
 }))
 
+vi.mock('@/utils/supabase.ts', () => ({
+  supabase: {
+    auth: {
+      signInWithOAuth: vi.fn(),
+    },
+  },
+}))
+
 
 describe('AuthView.vue', () => {
   beforeEach(() => {
