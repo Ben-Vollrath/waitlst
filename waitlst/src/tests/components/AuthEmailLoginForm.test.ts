@@ -81,6 +81,6 @@ describe('EmailLoginForm.vue', () => {
     await wrapper.find('form').trigger('submit.prevent')
 
     // Expect alert to be called
-    expect(window.alert).toHaveBeenCalledWith('Login failed')
+    expect(wrapper.find('p').text()).toBe('Login failed')
   })
 })
