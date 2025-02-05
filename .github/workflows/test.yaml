@@ -1,4 +1,4 @@
-name: test-backend
+name: test
 
 on:
   push:
@@ -25,3 +25,24 @@ jobs:
         working-directory: ./backend/
       - run: deno test --allow-all ./functions/tests
         working-directory: ./backend/supabase/
+  test-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: ./waitlst/package-lock.json
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./waitlst
+
+      - name: Run Vitest
+        run: npm run test:unit
+        working-directory: ./waitlst
