@@ -46,7 +46,7 @@ CREATE TABLE waitlist_signup (
   waitlist_id uuid REFERENCES waitlist(id),
   email TEXT NOT NULL,
   joined_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
-  source TEXT NOT NULL
+  source TEXT
 );
 
 -- Enable RLS on waitlist_signup
