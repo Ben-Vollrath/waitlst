@@ -21,8 +21,8 @@ jobs:
 
       - run: supabase start
         working-directory: ./backend/
-      - run: supabase test db
-        working-directory: ./backend/
+      - run: deno test --allow-all ./tests/database
+        working-directory: ./backend/supabase/
       - run: deno test --allow-all ./functions/tests
         working-directory: ./backend/supabase/
   test-frontend:

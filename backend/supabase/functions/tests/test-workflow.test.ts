@@ -4,7 +4,7 @@ import { createClient, SupabaseClient } from 'jsr:@supabase/supabase-js@2'
 
 // Will load the .env file to Deno.env
 import { config } from 'https://deno.land/x/dotenv@v3.2.2/mod.ts'
-const env = config({ path: '.env.local' })
+const env = config({ path: '.env.test' })
 
 // Set up the configuration for the Supabase client
 const supabaseUrl = env.SUPABASE_URL ?? ''
