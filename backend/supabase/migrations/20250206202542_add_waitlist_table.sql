@@ -43,7 +43,7 @@ USING (auth.uid() = user_id);
 -- Create the waitlist_signup table
 CREATE TABLE waitlist_signup (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  waitlist_id uuid REFERENCES waitlist(id),
+  waitlist_id uuid REFERENCES waitlist(id) NOT NULL,
   email TEXT NOT NULL,
   joined_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
   source TEXT

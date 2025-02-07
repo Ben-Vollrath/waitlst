@@ -22,6 +22,8 @@ jobs:
 
       - run: supabase functions deploy test-workflow --project-ref $PROJECT_ID
         working-directory: ./backend/
+      - run: supabase functions deploy waitlist-signup --project-ref $PROJECT_ID --no-verify-jwt
+        working-directory: ./backend/
   deploy-migration:
     runs-on: ubuntu-latest
 

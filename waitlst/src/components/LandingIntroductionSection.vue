@@ -5,11 +5,12 @@ import { VCodeBlock } from '@wdns/vue-code-block'
 const code = ref(`
 import axios from 'axios';
 
-async function joinWaitlist(email, waitlistId) {
+async function joinWaitlist(email, waitlistId, source) {
   try {
     const response = await axios.post('https://waitlst.vollrath.io/', {
       email: email,
       waitlist_id: waitlistId,
+      source: source
     });
 
     console.log('Success:', response.data);
