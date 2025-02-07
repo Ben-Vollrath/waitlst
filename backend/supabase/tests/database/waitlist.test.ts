@@ -1,5 +1,5 @@
 import { assert, assertEquals, assertNotEquals } from "https://deno.land/std@0.192.0/testing/asserts.ts";
-import { createClient, SupabaseClient, User } from "jsr:@supabase/supabase-js@2";
+import { createClient, SupabaseClient } from "jsr:@supabase/supabase-js@2";
 import { config } from "https://deno.land/x/dotenv@v3.2.2/mod.ts";
 
 // Load environment variables
