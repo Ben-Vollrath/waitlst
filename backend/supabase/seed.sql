@@ -66,3 +66,13 @@ INSERT INTO
         from
             auth.users
     );
+
+INSERT INTO waitlist (
+    id,
+    user_id,
+    name
+) VALUES (
+    '00000000-0000-0000-0000-000000000000',  -- Fixed ID
+    (SELECT id FROM auth.users LIMIT 1),   -- Select any existing user ID
+    'Waitlist1'  -- Waitlist name
+);
