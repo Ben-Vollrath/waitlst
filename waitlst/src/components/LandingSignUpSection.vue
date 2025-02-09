@@ -1,9 +1,49 @@
 <script setup lang="ts">
-import { Zap, Download, ChartSpline } from 'lucide-vue-next'
+import { Zap, Download, ChartSpline, Check } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button/'
 import { Input } from '@/components/ui/input'
 import LandingFeatureItem from '@/components/LandingFeatureItem.vue'
 import LandingStepDisplay from '@/components/LandingStepDisplay.vue'
+import axios from 'axios'
+import { ref, watch } from 'vue'
+
+const waitlistSignupUrl = import.meta.env.VITE_WAITLIST_SIGNUP_ENDPOINT
+const waitlistId = import.meta.env.VITE_WAITLIST_ID
+
+const email = ref('')
+const isSignedUp = ref(false)
+const isLoading = ref(false)
+const emailError = ref('')
+
+watch(email, () => {
+  emailError.value = ''
+})
+
+const signUpEmail = async () => {
+  if (!email.value) {
+    emailError.value = 'Email is required'
+    return
+  }
+
+  if (isSignedUp.value || isLoading.value) return
+
+  isLoading.value = true
+
+  try {
+    await axios.post(waitlistSignupUrl, {
+      email: email.value,
+      waitlist_id: waitlistId,
+    })
+
+    isSignedUp.value = true
+  } catch (error) {
+    if (error instanceof Error) {
+      emailError.value = "Couldn't sign up. Please try again later."
+    }
+  } finally {
+    isLoading.value = false
+  }
+}
 </script>
 
 <template>
@@ -16,19 +56,46 @@ import LandingStepDisplay from '@/components/LandingStepDisplay.vue'
         Add a waitlist to your site in minutes — no hassle, just one API call.
       </p>
 
-      <!-- "Broken" Email Signup -->
-      <div class="relative w-full max-w-md">
-        <Input type="email" placeholder="your@email.com" class="w-full" disabled />
-        <Button
-          class="absolute top-1/2 right-2 transform -translate-y-1/2 opacity-50 cursor-not-allowed"
-        >
-          Join Waitlist
-        </Button>
-      </div>
+      <!-- Signup Form -->
+      <form class="relative w-full max-w-md" @submit.prevent="signUpEmail">
+        <Input
+          type="email"
+          placeholder="your@email.com"
+          v-model="email"
+          :disabled="isSignedUp || isLoading"
+          class="w-full"
+          :class="{
+            'border-red-500 focus:border-red-500': emailError,
+            'border-green-500 focus:border-green-500': isSignedUp,
+          }"
+        />
 
-      <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-2">
-        🚧 Uh oh... looks like our waitlist is still waiting for Waitlst. Stay tuned!
-      </p>
+        <Button
+          class="absolute top-1/2 right-0 transform -translate-y-1/2 flex items-center gap-2"
+          :disabled="isSignedUp || isLoading"
+        >
+          <template v-if="isSignedUp">
+            <p>Signed Up!</p>
+            <Check class="w-5 h-5 text-green-500" />
+          </template>
+          <template v-else-if="isLoading"> ⏳ Joining... </template>
+          <template v-else> Join Waitlist </template>
+        </Button>
+      </form>
+      <p v-if="emailError" class="text-red-500 text-sm">{{ emailError }}</p>
+
+      <div class="flex items-center gap-2">
+        <p class="text-sm text-gray-500 dark:text-gray-400 italic">Integrated using</p>
+
+        <!-- Wrap the logo & text to keep them aligned -->
+        <a href="#" class="flex items-center gap-2">
+          <img src="@/assets/logo.svg" alt="Waitlst logo" class="h-6 w-6" />
+          <h1 class="font-bold text-sm">Waitlst</h1>
+        </a>
+
+        <!-- Navigation Elements (keeps spacing with `ml-auto` if needed) -->
+        <LandingNavigationElements class="hidden md:flex ml-auto" />
+      </div>
     </div>
 
     <!-- Right Section: Feature Items -->
