@@ -43,6 +43,10 @@ jobs:
         run: npm install
         working-directory: ./waitlst
 
+      - name: Copy environment file
+        run: cp .env.template .env
+        working-directory: ./waitlst
+
       - name: Run Vitest
         run: npm run test:unit
         working-directory: ./waitlst

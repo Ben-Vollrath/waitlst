@@ -7,7 +7,7 @@ import type { Mock } from 'vitest'
 // Mock Axios
 vi.mock('axios')
 
-describe('OAuthLoginButton.vue', () => {
+describe('LandingSignUpSection', () => {
   beforeEach(() => {
     vi.resetAllMocks() // Reset mock calls before each test
   })
