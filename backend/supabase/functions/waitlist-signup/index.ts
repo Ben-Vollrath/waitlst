@@ -9,7 +9,7 @@ const supabaseClient = createClient(supabaseUrl, supabaseServiceRoleKey);
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, {
-      status: 204, // No Content
+      status: 204,
       headers: corsHeaders,
     });
   }
