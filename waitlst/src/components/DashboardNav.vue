@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ClipboardList, LineChart } from 'lucide-vue-next'
+import { User, Home, Code, Settings } from 'lucide-vue-next'
 </script>
 
 <template>
@@ -8,15 +8,29 @@ import { ClipboardList, LineChart } from 'lucide-vue-next'
       href="/dashboard"
       class="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
     >
-      <ClipboardList class="h-4 w-4" />
-      Wait Lists
+      <Home class="h-4 w-4" />
+      Overview
     </a>
     <a
-      href="#"
-      class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+      href="/dashboard"
+      class="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:text-primary"
     >
-      <LineChart class="h-4 w-4" />
-      Analytics
+      <User class="h-4 w-4" />
+      Subscribers
+    </a>
+    <a
+      href="/dashboard"
+      class="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:text-primary"
+    >
+      <Code class="h-4 w-4" />
+      Code
+    </a>
+    <a
+      href="/dashboard"
+      class="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:text-primary"
+    >
+      <Settings class="h-4 w-4" />
+      Settings
     </a>
   </nav>
 </template>

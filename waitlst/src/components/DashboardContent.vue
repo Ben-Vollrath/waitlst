@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Menu } from 'lucide-vue-next'
 
 import DashboardNav from '@/components/DashboardNav.vue'
 import DashboardProfileDropdown from '@/components/DashboardProfileDropdown.vue'
+import DashboardProjectSelection from '@/components/DashboardProjectSelection.vue'
 </script>
 
 <template>
@@ -36,6 +36,9 @@ import DashboardProfileDropdown from '@/components/DashboardProfileDropdown.vue'
             <DashboardNav />
           </SheetContent>
         </Sheet>
+        <div class="w-full flex-1">
+          <DashboardProjectSelection />
+        </div>
         <div class="w-full flex items-center justify-end">
           <DashboardProfileDropdown />
         </div>
