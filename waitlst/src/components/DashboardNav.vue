@@ -21,7 +21,7 @@ const navigateToSection = (section: string) => {
 
 const activeSection = computed(() => {
   const pathSegments = route.path.split('/')
-  return pathSegments.length > 2 ? pathSegments[2] : '' // Extracts section name
+  return pathSegments.length > 2 ? pathSegments[2] : 'overview'
 })
 </script>
 
