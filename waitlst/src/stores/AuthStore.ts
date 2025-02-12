@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 import { supabase } from '@/utils/supabase'
 
 interface AuthState {
-  id: string | null
-  email: string | null
+  id: string | null,
+  email: string | null,
 }
 
 export const useAuthStore = defineStore('auth', {
