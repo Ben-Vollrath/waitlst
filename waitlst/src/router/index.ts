@@ -22,8 +22,10 @@ const router = createRouter({
     {
       path: '/dashboard',
       component: () => import('../views/DashboardView.vue'),
+      redirect: '/dashboard/overview',
       children: [
-        { path: '', component: () => import('@/components/DashboardOverview.vue')},
+        { path: 'overview', component: () => import('@/components/DashboardOverview.vue')},
+        { path: 'overview/:waitlistId', component: () => import('@/components/DashboardOverview.vue')},
         { path: ':waitlistId', component: () => import('@/components/DashboardOverview.vue')},
         { path: 'subscribers/:waitlistId', component: () => import('@/components/DashboardSubscribers.vue') },
         { path: 'code/:waitlistId', component: () => import('@/components/DashboardCode.vue') },
