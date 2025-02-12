@@ -8,13 +8,15 @@ interface WaitlistState {
     user_id: string,
     name: string,
     created_at: string,
-  }[]
+  }[],
+  selectedWaitlist: string | null,
 }
 
 
 export const useWaitlistStore = defineStore('waitlist', {
   state: (): WaitlistState => ({
     waitlists: [],
+    selectedWaitlist: null,
   }),
 
   actions: {
@@ -37,5 +39,8 @@ export const useWaitlistStore = defineStore('waitlist', {
 
       this.waitlists = data;
     },
+    selectWaitlist(id: string) {
+      this.selectedWaitlist = id;
+    }
   },
 });

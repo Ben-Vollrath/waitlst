@@ -13,29 +13,25 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import { CaretSortIcon, CheckIcon } from '@radix-icons/vue'
+import router from '@/router'
 
-// Store setup
 const waitlistStore = useWaitlistStore()
 const open = ref(false)
-const selectedWaitlistId = ref<string | null>(null)
-
-// Computed property to get waitlists
-const waitlists = computed(() => waitlistStore.waitlists)
 
 // Get the selected waitlist name
 const selectedWaitlist = computed(() => {
   return (
-    waitlists.value.find((w) => w.id === selectedWaitlistId.value)?.name || 'Select waitlist...'
+    waitlistStore.waitlists.find((w) => w.id === waitlistStore.selectedWaitlist)?.name ||
+    'Select waitlist...'
   )
 })
 
-// Select a waitlist from the dropdown
 const selectWaitlist = (waitlistId: string) => {
-  selectedWaitlistId.value = waitlistId
+  waitlistStore.selectWaitlist(waitlistId)
   open.value = false
+  router.push(`/dashboard/${waitlistId}`)
 }
 
-// Handle creating a new waitlist
 const createNewWaitlist = () => {
   console.log('TODO: Open waitlist creation modal or navigate to create page')
   open.value = false
@@ -62,7 +58,7 @@ const createNewWaitlist = () => {
         <CommandList>
           <CommandGroup>
             <CommandItem
-              v-for="waitlist in waitlists"
+              v-for="waitlist in waitlistStore.waitlists"
               :key="waitlist.id"
               :value="waitlist.name"
               @select="() => selectWaitlist(waitlist.id)"
@@ -72,13 +68,12 @@ const createNewWaitlist = () => {
                 :class="
                   cn(
                     'ml-auto h-4 w-4',
-                    selectedWaitlistId === waitlist.id ? 'opacity-100' : 'opacity-0',
+                    waitlistStore.selectedWaitlist === waitlist.id ? 'opacity-100' : 'opacity-0',
                   )
                 "
               />
             </CommandItem>
           </CommandGroup>
-          <!-- Create New Waitlist Button -->
           <CommandGroup>
             <CommandItem value="create-new" @select="createNewWaitlist"> + Create new </CommandItem>
           </CommandGroup>
