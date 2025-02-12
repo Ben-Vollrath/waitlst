@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { useWaitlistStore } from '@/stores/WaitlistStore'
 import { Button } from '@/components/ui/button'
 import {
   Command,
@@ -8,22 +10,36 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command'
-
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import { CaretSortIcon, CheckIcon } from '@radix-icons/vue'
-import { ref } from 'vue'
 
-const frameworks = [
-  { value: 'next.js', label: 'Next.js' },
-  { value: 'sveltekit', label: 'SvelteKit' },
-  { value: 'nuxt', label: 'Nuxt' },
-  { value: 'remix', label: 'Remix' },
-  { value: 'astro', label: 'Astro' },
-]
-
+// Store setup
+const waitlistStore = useWaitlistStore()
 const open = ref(false)
-const value = ref('')
+const selectedWaitlistId = ref<string | null>(null)
+
+// Computed property to get waitlists
+const waitlists = computed(() => waitlistStore.waitlists)
+
+// Get the selected waitlist name
+const selectedWaitlist = computed(() => {
+  return (
+    waitlists.value.find((w) => w.id === selectedWaitlistId.value)?.name || 'Select waitlist...'
+  )
+})
+
+// Select a waitlist from the dropdown
+const selectWaitlist = (waitlistId: string) => {
+  selectedWaitlistId.value = waitlistId
+  open.value = false
+}
+
+// Handle creating a new waitlist
+const createNewWaitlist = () => {
+  console.log('TODO: Open waitlist creation modal or navigate to create page')
+  open.value = false
+}
 </script>
 
 <template>
@@ -35,40 +51,36 @@ const value = ref('')
         :aria-expanded="open"
         class="w-[200px] justify-between"
       >
-        {{
-          value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : 'Select waitlist...'
-        }}
+        {{ selectedWaitlist }}
         <CaretSortIcon class="ml-2 h-4 w-4 shrink-0 opacity-50" />
       </Button>
     </PopoverTrigger>
     <PopoverContent class="w-[200px] p-0">
       <Command>
-        <CommandInput class="h-9" placeholder="Search framework..." />
-        <CommandEmpty>No framework found.</CommandEmpty>
+        <CommandInput class="h-9" placeholder="Search waitlist..." />
+        <CommandEmpty>No waitlists found.</CommandEmpty>
         <CommandList>
           <CommandGroup>
             <CommandItem
-              v-for="framework in frameworks"
-              :key="framework.value"
-              :value="framework.value"
-              @select="
-                (ev) => {
-                  if (typeof ev.detail.value === 'string') {
-                    value = ev.detail.value
-                  }
-                  open = false
-                }
-              "
+              v-for="waitlist in waitlists"
+              :key="waitlist.id"
+              :value="waitlist.name"
+              @select="() => selectWaitlist(waitlist.id)"
             >
-              {{ framework.label }}
+              {{ waitlist.name }}
               <CheckIcon
                 :class="
-                  cn('ml-auto h-4 w-4', value === framework.value ? 'opacity-100' : 'opacity-0')
+                  cn(
+                    'ml-auto h-4 w-4',
+                    selectedWaitlistId === waitlist.id ? 'opacity-100' : 'opacity-0',
+                  )
                 "
               />
             </CommandItem>
+          </CommandGroup>
+          <!-- Create New Waitlist Button -->
+          <CommandGroup>
+            <CommandItem value="create-new" @select="createNewWaitlist"> + Create new </CommandItem>
           </CommandGroup>
         </CommandList>
       </Command>
