@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { useWaitlistStore } from '@/stores/WaitlistStore'
 import { Button } from '@/components/ui/button'
 import {
@@ -13,10 +13,12 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import { CaretSortIcon, CheckIcon } from '@radix-icons/vue'
-import router from '@/router'
+import { useRouter, useRoute } from 'vue-router'
 
 const waitlistStore = useWaitlistStore()
 const open = ref(false)
+const router = useRouter()
+const route = useRoute()
 
 // Get the selected waitlist name
 const selectedWaitlist = computed(() => {
@@ -29,7 +31,13 @@ const selectedWaitlist = computed(() => {
 const selectWaitlist = (waitlistId: string) => {
   waitlistStore.selectWaitlist(waitlistId)
   open.value = false
-  router.push(`/dashboard/${waitlistId}`)
+
+  const pathSegments = route.path.split('/')
+  const section = pathSegments.length > 2 ? pathSegments[2] : ''
+
+  const newPath = section ? `/dashboard/${section}/${waitlistId}` : `/dashboard/#/${waitlistId}`
+
+  router.push(newPath)
 }
 
 const createNewWaitlist = () => {

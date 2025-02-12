@@ -21,13 +21,14 @@ const router = createRouter({
     },
     {
       path: '/dashboard',
-      name: 'dashboard',
       component: () => import('../views/DashboardView.vue'),
-    },
-    {
-      path: "/dashboard/:waitlistId",
-      name: "dashboard-waitlist",
-      component: () => import('../views/DashboardView.vue'),
+      children: [
+        { path: '', component: () => import('@/components/DashboardOverview.vue')},
+        { path: ':waitlistId', component: () => import('@/components/DashboardOverview.vue')},
+        { path: 'subscribers/:waitlistId', component: () => import('@/components/DashboardSubscribers.vue') },
+        { path: 'code/:waitlistId', component: () => import('@/components/DashboardCode.vue') },
+        { path: 'settings/:waitlistId', component: () => import('@/components/DashboardSettings.vue') },
+      ]
     }
   ],
 })
