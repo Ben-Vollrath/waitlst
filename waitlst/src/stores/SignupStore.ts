@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia';
 import { supabase } from '@/utils/supabase'
+import { useWaitlistStore } from '@/stores/WaitlistStore';
 
 
 interface SignupState {
   signups: {
-    id: string,
-    waitlist_id: string,
     email: string,
     joined_at: string,
     source: string,
@@ -19,12 +18,15 @@ export const useSignupStore = defineStore('signup', {
   }),
 
   actions: {
-    async fetchSignups(waitlistId: string) {
+    async fetchSignups() {
+      const waitlistStore = useWaitlistStore();
+      const waitlistId = waitlistStore.selectedWaitlist;
+
       if (!waitlistId) return;
 
       const { data, error } = await supabase
         .from('waitlist_signup')
-        .select('*')
+        .select('email, joined_at, source')
         .eq('waitlist_id', waitlistId)
         .order('joined_at', { ascending: true });
 

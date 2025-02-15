@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { supabase } from '@/utils/supabase'
 import { useAuthStore } from '@/stores/AuthStore';
+import { useSignupStore } from '@/stores/SignupStore';
 
 interface WaitlistState {
   waitlists: {
@@ -41,6 +42,10 @@ export const useWaitlistStore = defineStore('waitlist', {
     },
     selectWaitlist(id: string) {
       this.selectedWaitlist = id;
+      // Fetch signups for the new waitlist
+      const signupStore = useSignupStore();
+      signupStore.fetchSignups();
     }
   },
 });
+
