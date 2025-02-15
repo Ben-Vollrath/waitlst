@@ -14,6 +14,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { cn } from '@/lib/utils'
 import { CaretSortIcon, CheckIcon } from '@radix-icons/vue'
 import { useRouter, useRoute } from 'vue-router'
+import DashboardProjectCreateDialog from '@/components/DashboardProjectCreateDialog.vue'
 
 const waitlistStore = useWaitlistStore()
 const open = ref(false)
@@ -83,7 +84,9 @@ const createNewWaitlist = () => {
             </CommandItem>
           </CommandGroup>
           <CommandGroup>
-            <CommandItem value="create-new" @select="createNewWaitlist"> + Create new </CommandItem>
+            <CommandItem value="create-new">
+              <DashboardProjectCreateDialog />
+            </CommandItem>
           </CommandGroup>
         </CommandList>
       </Command>

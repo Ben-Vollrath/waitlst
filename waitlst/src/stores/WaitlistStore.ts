@@ -45,7 +45,26 @@ export const useWaitlistStore = defineStore('waitlist', {
       // Fetch signups for the new waitlist
       const signupStore = useSignupStore();
       signupStore.fetchSignups();
-    }
+    },
+    async addWaitlist(name: string) {
+      const authStore = useAuthStore();
+      const userId = authStore.id;
+
+      if (!userId) return;
+
+      const { data, error } = await supabase
+        .from('waitlist')
+        .insert([{ name, user_id: userId }]).select();
+
+      if (error) {
+        console.error('Error adding waitlist:', error);
+        return;
+      }
+
+      if (data) {
+        this.waitlists.push(data[0]);
+      }
+    },
   },
 });
 
