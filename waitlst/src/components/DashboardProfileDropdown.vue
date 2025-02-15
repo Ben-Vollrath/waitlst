@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CircleUser } from 'lucide-vue-next'
+import { Button } from '@/components/ui/button'
 
 import {
   DropdownMenu,

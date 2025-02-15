@@ -19,7 +19,6 @@ watchEffect(() => {
     waitlistStore.fetchWaitlists()
 
     //Parse selected waitlist from route
-    console.log(`Test: ${route.params.waitlistId}`)
     if (route.params.waitlistId) {
       waitlistStore.selectWaitlist(route.params.waitlistId as string)
     }
