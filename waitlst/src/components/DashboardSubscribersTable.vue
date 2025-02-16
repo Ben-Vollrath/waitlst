@@ -8,6 +8,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
+import DashboardSubscribersRemoveDialog from '@/components/DashboardSubscribersRemoveDialog.vue'
 import { useSignupStore } from '@/stores/SignupStore'
 
 const signupStore = useSignupStore()
@@ -19,16 +20,19 @@ const signupStore = useSignupStore()
       <TableRow>
         <TableHead>Email</TableHead>
         <TableHead>Join Date</TableHead>
-        <TableHead class="text-right"> source </TableHead>
+        <TableHead> source </TableHead>
       </TableRow>
     </TableHeader>
     <TableBody>
-      <TableRow v-for="invoice in signupStore.signups" :key="invoice.email">
+      <TableRow v-for="signUp in signupStore.signups" :key="signUp.email">
         <TableCell class="font-medium">
-          {{ invoice.email }}
+          {{ signUp.email }}
         </TableCell>
-        <TableCell>{{ invoice.joined_at }}</TableCell>
-        <TableCell class="text-right">{{ invoice.source }}</TableCell>
+        <TableCell>{{ signUp.joined_at }}</TableCell>
+        <TableCell>{{ signUp.source }}</TableCell>
+        <TableCell class="text-right"
+          ><DashboardSubscribersRemoveDialog :email="signUp.email"
+        /></TableCell>
       </TableRow>
     </TableBody>
   </Table>

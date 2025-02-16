@@ -56,6 +56,28 @@ export const useSignupStore = defineStore('signup', {
       if (data) {
         this.signups.push(data[0]);
       }
+    },
+    async removeSignup(email: string) {
+      const waitlistStore = useWaitlistStore();
+      const waitlistId = waitlistStore.selectedWaitlist;
+
+      if (!waitlistId) return;
+
+      const { data, error } = await supabase
+        .from('waitlist_signup')
+        .delete()
+        .eq('email', email)
+        .eq('waitlist_id', waitlistId)
+        .select();
+
+      if (error) {
+        console.error('Error removing signup:', error);
+        return;
+      }
+
+      if (data) {
+        this.signups = this.signups.filter((signup) => signup.email !== email);
+      }
     }
   },
 });
