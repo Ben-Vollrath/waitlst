@@ -39,6 +39,10 @@ export const useWaitlistStore = defineStore('waitlist', {
       }
 
       this.waitlists = data;
+
+      if (data.length > 0) {
+        this.selectWaitlist(data[0].id);
+      }
     },
     selectWaitlist(id: string) {
       this.selectedWaitlist = id;
