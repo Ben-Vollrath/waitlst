@@ -40,11 +40,6 @@ const selectWaitlist = (waitlistId: string) => {
 
   router.push(newPath)
 }
-
-const createNewWaitlist = () => {
-  console.log('TODO: Open waitlist creation modal or navigate to create page')
-  open.value = false
-}
 </script>
 
 <template>

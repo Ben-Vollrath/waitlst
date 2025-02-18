@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { watch } from 'vue'
 import {
   Table,
   TableBody,
@@ -12,6 +13,26 @@ import DashboardSubscribersRemoveDialog from '@/components/DashboardSubscribersR
 import { useSignupStore } from '@/stores/SignupStore'
 
 const signupStore = useSignupStore()
+
+watch(
+  () => signupStore.signups,
+  () => {
+    console.log('signups', signupStore.signups)
+  },
+)
+
+const signups = [
+  {
+    email: 'qwe',
+    joined_at: 'qwe',
+    source: 'qweqw',
+  },
+  {
+    email: 'qweqw',
+    joined_at: 'qweqw',
+    source: 'qweqwe',
+  },
+]
 </script>
 
 <template>

@@ -46,13 +46,11 @@ export const useSignupStore = defineStore('signup', {
       const { data, error } = await supabase
         .from('waitlist_signup')
         .insert([{ email, waitlist_id: waitlistId, source }]).select();
-      console.log('Signup added:', data);
 
       if (error) {
         console.error('Error adding signup:', error);
         return;
       }
-      console.log('Signup added:', data);
       if (data) {
         this.signups.push(data[0]);
       }
